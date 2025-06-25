@@ -1,67 +1,195 @@
-# Logistics Tracking Platform
 
-## Overview
-A fully serverless, scalable logistics tracking platform on AWS.
+# 🚚 Logistics-Tracking Platform – *AWS Serverless, IaC, CI/CD, Observability*
 
-**Features:**
-- AWS Lambda (Python)
-- DynamoDB for parcel/location data
-- API Gateway for HTTP API
-- Terraform for Infrastructure as Code
-- CI/CD with GitHub Actions
-- Monitoring with Amazon Managed Grafana (CloudWatch metrics)
-- Load tested for 5,000+ concurrent users
+> **A real-world logistics tracking API, fully automated with Terraform, monitored with Grafana, and CI/CD-ed via GitHub Actions. Built to scale, tested to break, and designed for learning and real production needs.**
+
+---
+## 📑 Table of Contents
+
+- [Project Highlights](#project-highlights)
+- [Architecture](#architecture)
+- [Whats Inside](#whats-inside)
+- [Screenshots & Walkthrough](#screenshots--walkthrough)
+    - [API in Action](#1-api-in-action)
+    - [AWS Lambda & DynamoDB](#2-aws-lambda--dynamodb)
+    - [CI/CD & Automation](#3-cicd--automation)
+    - [Monitoring & Observability](#4-monitoring--observability)
+    - [CloudWatch Metrics](#5-cloudwatch-metrics)
+- [Load Testing & Results](#load-testing--results)
+- [Troubleshooting & Lessons Learned](#troubleshooting--lessons-learned)
+- [How to Run This Project](#how-to-run-this-project)
+- [Video Demo](#video-demo)
+- [Connect With Me](#connect-with-me)
+- [Keywords](#keywords)
+- [Why This Project](#why-this-project)
+
+
+---
+## ⚡️ Project Highlights
+
+- **End-to-End AWS Automation**: Infrastructure as Code with Terraform—no manual setup.
+- **Serverless & Cost-Effective**: AWS Lambda + API Gateway + DynamoDB.
+- **Modern CI/CD**: GitHub Actions automates every deployment.
+- **Monitoring & Observability**: CloudWatch + Amazon Managed Grafana dashboards.
+- **Load Tested**: Pushed to 3,000 concurrent users—see the stats and learnings below!
+- **Documented Real-World Errors**: I own my mistakes and show how I fixed them.
+- **Visual Demo**: [Soundless video demo on YouTube](#) *(coming soon!)*
 
 ---
 
-## Architecture
+## 🏗️ Architecture
 
-![Architecture Diagram](architecture.png)
-
-“designed and diagrammed the end-to-end cloud architecture for clarity and stakeholder alignment.”
-
----
-
-## Tech Stack
-
-| Layer      | Tech                   |
-|------------|------------------------|
-| Infra      | Terraform              |
-| Compute    | AWS Lambda (Python)    |
-| API        | AWS API Gateway        |
-| DB         | DynamoDB               |
-| CI/CD      | GitHub Actions         |
-| Monitoring | Grafana, CloudWatch    |
-| Load Test  | Artillery or k6        |
+![Architecture Diagram](images/Architecture.jpg)
+*Architecture designed and drawn for clarity by Adedoyin Ekong*
 
 ---
 
-## Main Modules
+## 🚀 What’s Inside
 
-- `infra/` – Terraform IaC
-- `lambdas/` – Lambda function code
-- `.github/workflows/` – CI/CD definitions
-- `README.md` – This file
-- `architecture.png` – Your system diagram
-- `loadtest-report.md` – Add after load tests
-
----
-
-## Project Goals
-
-- Fast, scalable, serverless logistics tracking simulation
-- 99.9% uptime under load
-- End-to-end automation with CI/CD
-- Real monitoring and reporting
+- **Terraform IaC**: Stand up Lambda, API Gateway, DynamoDB, IAM roles, and Grafana.
+- **Lambda Function**: Handles `/track` POST and `/parcel/{id}` GET endpoints.
+- **DynamoDB Table**: Stores parcel tracking data (Partition Key: `parcel_id`).
+- **API Gateway**: Public API endpoints.
+- **Monitoring**: CloudWatch for logs & metrics, visualized in Grafana.
+- **CI/CD Pipeline**: Automated deploy/destroy with GitHub Actions.
 
 ---
 
-## Get Started
+## 📷 Screenshots & Walkthrough
 
-1. Clone this repo.
-2. Set up your AWS credentials.
-3. Deploy infra:  
-   ```bash
-   cd infra
-   terraform init
-   terraform apply
+### 1. **API in Action**
+- **POST /track** (track a parcel):  
+  ![api POST success](images/api%20POST%20success.png)
+- **GET /parcel/{id}** (retrieve tracking info):  
+  ![API GET Success](images/api%20GET%20success.png)
+- **API Gateway Resources**  
+  ![API Gateway](images/API.png)
+
+### 2. **AWS Lambda & DynamoDB**
+- **Lambda Triggered by API Gateway**:  
+  ![Lambda API Gateway Trigger](images/API%20GATEWAY%20TRIGGERS.png)
+- **Lambda Function Overview**:  
+  ![Lambda Function](images/lambdafuntion.png)
+- **DynamoDB Table**:  
+  ![DynamoDB Table](images/DynamoDB.png)
+
+### 3. **CI/CD & Automation**
+- **Zipping Lambda code before deploy** *(required for Terraform to work!)*:  
+  ![Zip Lambda](images/zip%20lambda%20code%20everytime.png)
+
+### 4. **Monitoring & Observability**
+- **Grafana Setup (Connected to CloudWatch)**:  
+  ![Connect Grafana to CloudWatch](images/grafana%20connect%20to%20cloudwatch.png)  
+  ![Data Source Working](images/Data%20source%20is%20working.png)
+- **Grafana Workspace & Login**:  
+  ![Grafana URL](images/grafana%20url.png)  
+  ![Grafana Welcome](images/grafana%20welcome.png)  
+  ![Grafana Creation](images/GRAFANA-CREATION.png)
+- **API Gateway 4xx/5xx & Latency Dashboards**:  
+  ![4xx Error](images/apiGateway-grafana-4xxerror.png)  
+  ![5xx Error](images/apiGateway-grafana-5xxerror.png)  
+  ![Latency](images/apiGateway-grafana-latency.png)
+- **DynamoDB Monitoring in Grafana**:  
+  ![Read Capacity](images/DynamoDB-Grafana-readcapacity.png)  
+  ![Write Capacity](images/DynamoDB-Grafana-Writecapacity.png)
+- **Lambda Metrics in Grafana**:  
+  ![Lambda Errors](images/lambda-grafana-errors.png)  
+  ![Lambda Invocations](images/lambda-invocation.png)  
+  ![Lambda Function Errors (CloudWatch)](images/lambda-errors.png)  
+  ![Lambda Function Invocations (CloudWatch)](images/lambda-invocation.png)
+
+### 5. **CloudWatch Metrics**
+- **Combined API & Lambda Metrics**:  
+  ![CloudWatch Metrics](images/graph%20metrics.png)
+
+---
+
+## 🧪 Load Testing & Results
+
+- I simulated **3,000 concurrent users** hitting my API with Artillery.
+- The API handled about **1,600 successful requests**, with an average response time of ~360ms.
+- As expected for free-tier resources, some requests timed out or returned errors at high load, demonstrating the need for further tuning at higher scale.
+
+**Sample Artillery Report:**  
+![Load Test 1](images/loadtest1.png)  
+![Load Test 2](images/loadtest2.png)
+
+---
+
+## 💡 Troubleshooting & Lessons Learned
+
+### Common Error:  
+> `open lambda/handler.zip: no such file or directory`
+
+**Why?**  
+Terraform requires the zipped Lambda code (`handler.zip`) to exist before both `apply` *and* `destroy`—otherwise, destroy fails with the above error.
+
+**How I Owned & Fixed It:**  
+- Always re-zip (`zip handler.zip handler.py`) before any `terraform apply` or `terraform destroy`.
+- See [screenshot](images/handler.zip%20deflate.png) for process.
+- Documented the error and fix for the next engineer (or my future self!).
+
+---
+
+## 📋 How to Run This Project
+
+1. **Clone the repo:**  
+   `git clone https://github.com/yourname/logistics-tracking-platform.git`
+2. **Create and zip Lambda code:**  
+```
+
+cd infra/lambda
+zip handler.zip handler.py
+cd ../..
+
+```
+3. **Terraform Init & Apply:**  
+```
+
+cd infra
+terraform init
+terraform apply -auto-approve
+
+```
+4. **API Endpoints:**  
+- `POST /track` — add or update parcel status
+- `GET /parcel/{id}` — fetch parcel status
+
+5. **Monitor** in AWS CloudWatch or Grafana (see screenshots above).
+
+6. **To destroy infra:**  
+- Re-zip Lambda if needed, then  
+- `terraform destroy -auto-approve`
+
+> **Note:** If you get a *handler.zip not found* error on destroy, re-zip your Lambda code and try again!
+
+---
+
+## 📹 Video Demo
+
+*I’m uploading soundless video demos to my YouTube soon! Check back or [visit my channel](#) for the latest.*  
+<!-- Add actual YouTube link when ready -->
+
+---
+
+## 🤝 Connect With Me
+
+- [LinkedIn](https://www.linkedin.com/in/adedoyin-ekong/) 
+- [GitHub](https://github.com/doyindevops)
+- [Medium](https://medium.com/@adedoyinekong)
+
+---
+
+## 🏷️ Keywords
+
+`#Terraform #AWS #Serverless #DevOps #CI/CD #Lambda #DynamoDB #APIGateway #Grafana #CloudWatch #Monitoring #Automation #Artillery #LoadTesting`
+
+---
+
+## ⭐️ Why This Project?
+
+I built this to **practice by doing**—solving real DevOps problems, simulating real-world scale, and pushing AWS free tier to its limit. I own my errors, document my fixes, and share my journey for both DevOps engineers and curious recruiters.
+
+---
+
+
