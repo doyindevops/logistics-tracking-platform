@@ -1,0 +1,12 @@
+config:
+  target: "https://zk6fs55ec0.execute-api.us-east-1.amazonaws.com/prod/"
+  phases:
+    - duration: 60
+      arrivalRate: 50    # 50 new users per second for 60 seconds (~3,000 requests)
+scenarios:
+  - flow:
+      - post:
+          url: "/track"
+          json:
+            parcel_id: "loadtest-{{ $randomInt(10000,99999) }}"
+            status: "in_transit"
