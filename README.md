@@ -1,6 +1,19 @@
 
 # 🚚 Logistics-Tracking Platform – *AWS Serverless, IaC, CI/CD, Observability*
 
+[![Maintainer](https://img.shields.io/badge/maintainer-doyindevops-blue)](https://github.com/doyindevops)
+[![YouTube](https://img.shields.io/badge/YouTube-Project_Demo-red?logo=youtube)](https://www.youtube.com/@doyinekong/playlists)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+> **Created and maintained by [Doyin Ekong](https://github.com/doyindevops) – Cloud & DevOps Engineer**
+
+---
+
+**🚩 If you fork, please retain this attribution section to credit the original author.**
+
+---
+
+_AWS Serverless | Infrastructure as Code | CI/CD | Observability_
 ## About This Project
 
 This project includes a complete video walkthrough.  
