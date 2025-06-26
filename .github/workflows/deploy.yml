@@ -1,8 +1,8 @@
 name: Deploy to AWS
 
 on:
-  # Temporarily disabling push trigger to main branch for workflow runs.
-  # Uncomment the next lines to re-enable automatic deploys on push to main.
+  # Using manual trigger only. Re-enable push below if needed.
+  workflow_dispatch:
   # push:
   #   branches:
   #     # - main
