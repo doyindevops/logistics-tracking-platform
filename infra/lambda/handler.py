@@ -38,3 +38,5 @@ def lambda_handler(event, context):
             "statusCode": 405,
             "body": json.dumps({"error": "Method not allowed"})
         }
+# Author: Adedoyin Ekong (@doyindevops)
+# Repo: https://github.com/doyindevops/logistics-tracking-platform
