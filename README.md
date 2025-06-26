@@ -11,7 +11,7 @@
 
 
 
-## 🎯 Why I Built This & Why It Matters
+##  Why I Built This & Why It Matters
 
 When I started this project, my goal was simple: **build something that works like a real-world logistics system, not just another demo.** I wanted to prove (to myself and to future teams) that I could take a business problem—tracking parcels end-to-end—and solve it with the exact tools companies use every day.
 
@@ -61,7 +61,7 @@ I built this platform to reflect real business needs, using real AWS tools, with
 
 
 ---
-## ⚡️ Project Highlights
+##  Project Highlights
 
 - **End-to-End AWS Automation**: Infrastructure as Code with Terraform—no manual setup.
 - **Serverless & Cost-Effective**: AWS Lambda + API Gateway + DynamoDB.
@@ -73,14 +73,14 @@ I built this platform to reflect real business needs, using real AWS tools, with
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ![Architecture Diagram](images/Architecture.jpg)
 *Architecture designed and drawn for clarity by Adedoyin Ekong*
 
 ---
 
-## 🚀 What’s Inside
+##  What’s Inside
 
 - **Terraform IaC**: Stand up Lambda, API Gateway, DynamoDB, IAM roles, and Grafana.
 - **Lambda Function**: Handles `/track` POST and `/parcel/{id}` GET endpoints.
@@ -91,7 +91,7 @@ I built this platform to reflect real business needs, using real AWS tools, with
 
 ---
 
-## 📷 Screenshots & Walkthrough
+##  Screenshots & Walkthrough
 
 ### 1. **API in Action**
 - **POST /track** (track a parcel):  
@@ -140,7 +140,7 @@ I built this platform to reflect real business needs, using real AWS tools, with
 
 ---
 
-## 🧪 Load Testing & Results
+##  Load Testing & Results
 
 - I simulated **3,000 concurrent users** hitting my API with Artillery.
 - The API handled about **1,600 successful requests**, with an average response time of ~360ms.
@@ -152,7 +152,7 @@ I built this platform to reflect real business needs, using real AWS tools, with
 
 ---
 
-## 💡 Troubleshooting & Lessons Learned
+##  Troubleshooting & Lessons Learned
 
 ### Common Error:  
 > `open lambda/handler.zip: no such file or directory`
@@ -167,7 +167,7 @@ Terraform requires the zipped Lambda code (`handler.zip`) to exist before both `
 
 ---
 
-## 📋 How to Run This Project
+##  How to Run This Project
 
 1. **Clone the repo:**  
    `git clone https://github.com/yourname/logistics-tracking-platform.git`
@@ -201,14 +201,14 @@ terraform apply -auto-approve
 
 ---
 
-## 📹 Video Demo
+##  Video Demo
 
 *I’m uploading soundless video demos to my YouTube soon! Check back or [visit my channel](#) for the latest.*  
 <!-- Add actual YouTube link when ready -->
 
 ---
 
-## 🤝 Connect With Me
+##  Connect With Me
 
 - [LinkedIn](https://www.linkedin.com/in/adedoyin-ekong/) 
 - [GitHub](https://github.com/doyindevops)
@@ -216,13 +216,13 @@ terraform apply -auto-approve
 
 ---
 
-## 🏷️ Keywords
+##  Keywords
 
 `#Terraform #AWS #Serverless #DevOps #CI/CD #Lambda #DynamoDB #APIGateway #Grafana #CloudWatch #Monitoring #Automation #Artillery #LoadTesting`
 
 ---
 
-## ⭐️ Why This Project?
+##  Why This Project?
 
 I built this to **practice by doing**—solving real DevOps problems, simulating real-world scale, and pushing AWS free tier to its limit. I own my errors, document my fixes, and share my journey for both DevOps engineers and curious recruiters.
 
