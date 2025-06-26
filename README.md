@@ -1,6 +1,6 @@
 
 # 🚚 Logistics-Tracking Platform – *AWS Serverless, IaC, CI/CD, Observability*
-![CI/CD Status](https://github.com/doyindevops/logistics-tracking-platform/actions/workflows/deploy.yml/badge.svg)
+
 
 
 > **A real-world logistics tracking API, fully automated with Terraform, monitored with Grafana, and CI/CD-ed via GitHub Actions. Built to scale, tested to break, and designed for learning and real production needs.**
